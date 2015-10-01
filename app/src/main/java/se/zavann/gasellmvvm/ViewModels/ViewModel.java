@@ -6,5 +6,11 @@ package se.zavann.gasellmvvm.ViewModels;
 public class ViewModel {
 
     //TODO: fyll med modeller
+    //Customer
+    //Contract
+    //Site
+    //don't use or store login information anywhere.
+
+
 
 }

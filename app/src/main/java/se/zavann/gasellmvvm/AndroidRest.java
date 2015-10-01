@@ -5,6 +5,10 @@
  */
 package se.zavann.gasellmvvm;
 
+import se.zavann.gasellmvvm.DTO.DtoContractInfo;
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
+import se.zavann.gasellmvvm.DTO.DtoSiteInfo;
+
 /**
  *
  * @author Tom
