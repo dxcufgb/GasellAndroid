@@ -6,3 +6,6 @@
 /build
 /captures
 /app/src/main/java/se/zavann/gasellmvvm/GasellRest.java
+.idea
+app/app.iml
+app/build.gradle
