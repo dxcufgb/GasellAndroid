@@ -48,7 +48,7 @@ public class Customer {
         this.password = password;
     }
 
-    //TODO: detta känns osäkert, måste se över eller ändra så det dols totalt.
+    //TODO: detta kanns osakert, maste se over eller andra sa det dols totalt.
     public String getPassword(){
         return this.password;
     }
