@@ -27,6 +27,8 @@ public class DtoCustomerInfo {
         this.customerId = customerId;
     }
 
+    public String getId() { return customerId; }
+
     public String getCustomerId() {
         return customerId;
     }
