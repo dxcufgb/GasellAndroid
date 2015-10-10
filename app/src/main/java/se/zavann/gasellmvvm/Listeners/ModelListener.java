@@ -5,6 +5,6 @@ package se.zavann.gasellmvvm.Listeners;
  */
 public interface ModelListener{
 
-    
+    public void onModelStateChange();
 
 }

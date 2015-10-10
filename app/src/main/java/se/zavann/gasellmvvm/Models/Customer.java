@@ -1,64 +1,139 @@
 package se.zavann.gasellmvvm.Models;
 
+import android.content.Context;
+
 /**
  * Created by Tom on 2015-05-21.
  */
 public class Customer {
 
-    private int id;
-    private String username;
-    private String password;
-    private String name;
-    private long personal_id;
-    private String contract;
+    //instance variables
+    private String
+            customerId,
+            firstName,
+            lastName,
+            email,
+            companyName,
+            socialId,
+            address,
+            zipCode,
+            city,
+            dayPhone,
+            homePhone,
+            cellPhone;
 
-    public Customer(int id, long personal_id, String username, String password, String name){
-        this.id = id;
-        this.personal_id = personal_id;
-        this.username = username;
-        this.password = password;
-        this.name = name;
+    //main constructor
+    public Customer(String customerId, String firstName, String lastName, String email
+        , String companyName, String socialId, String address, String zipCode, String city
+        , String dayPhone, String homePhone, String cellPhone){
+
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.companyName = companyName;
+        this.socialId = socialId;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.dayPhone = dayPhone;
+        this.homePhone = homePhone;
+        this.cellPhone = cellPhone;
+
     }
 
-    public void setId(int id){
-        this.id = id;
+    //empty constructor for instantiations
+    public Customer(){};
+
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public int getId(){
-        return this.id;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public void setPersonalId(long personal_id){
-        this.personal_id = personal_id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public long getPersonalId(){
-        return this.personal_id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setUsername(String username){
-        this.username = username;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getUsername(){
-        return this.username;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setPassword(String password){
-        this.password = password;
+    public String getEmail() {
+        return email;
     }
 
-    //TODO: detta kanns osakert, maste se over eller andra sa det dols totalt.
-    public String getPassword(){
-        return this.password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public String getName(){
-        return this.name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
+    public String getSocialId() {
+        return socialId;
+    }
+
+    public void setSocialId(String socialId) {
+        this.socialId = socialId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDayPhone() {
+        return dayPhone;
+    }
+
+    public void setDayPhone(String dayPhone) {
+        this.dayPhone = dayPhone;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
+    }
 }

@@ -9,5 +9,6 @@ public class ErrorConstants {
     public static String PASSWORD_IS_NOT_VALID = "Invalid password, try again!";
     public static String ERROR_CODE_404 = "The server seems to be down at the moment...";
     public static String ERROR_CODE_100 = "Something with the application is broken...";
+    public static String ERROR_CODE_101 = "Invalid Username/Password!";
 
 }

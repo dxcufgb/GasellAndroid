@@ -2,6 +2,7 @@ package se.zavann.gasellmvvm.View;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -18,6 +19,7 @@ public class LoginView extends LinearLayout {
 
     //click listener for login button
     public void setListeners(OnClickListener onClickListener) {
+        Log.i("View", "Clicking button!");
         findViewById(R.id.btnLogin).setOnClickListener(onClickListener);
     }
 
