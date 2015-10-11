@@ -30,10 +30,10 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         if (extras != null) {
             this.customerId = extras.getString("customerId");
             DtoCustomerInfo customerObject = rest.getCustomerInfo(this.customerId);
-
-            this.twWelcome.setText(customerObject.getFirstName()
+            String text = customerObject.getFirstName()
                     + " "
-                    + customerObject.getLastName());
+                    + customerObject.getLastName();
+            this.twWelcome.setText(text);
         }
 
 
