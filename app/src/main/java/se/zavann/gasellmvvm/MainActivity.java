@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
 
     private TextView twWelcome;
     //interface supplied, see AndroidRest.
-    private GasellRest rest;
+    private GasellRest rest = new GasellRest();
     private String customerId;
 
     @Override
