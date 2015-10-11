@@ -7,13 +7,15 @@ import android.view.MenuItem;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
 import se.zavann.gasellmvvm.Models.Customer;
 
 public class MainActivity extends ActionBarActivity /*implements MainActivityListener*/{
 
     private TextView twWelcome;
-    private AndroidRest rest;
+    //interface supplied, see AndroidRest.
+    private GasellRest rest;
     private String customerId;
 
     @Override
@@ -27,11 +29,11 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             this.customerId = extras.getString("customerId");
-            rest.getCustomerInfo(this.customerId);
+            DtoCustomerInfo customerObject = rest.getCustomerInfo(this.customerId);
 
-            this.twWelcome.setText(rest.getCustomerInfo(this.customerId).getFirstName()
+            this.twWelcome.setText(customerObject.getFirstName()
                     + " "
-                    + rest.getCustomerInfo(this.customerId).getLastName());
+                    + customerObject.getLastName());
         }
 
 
