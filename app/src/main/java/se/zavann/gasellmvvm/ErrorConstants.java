@@ -5,6 +5,7 @@ package se.zavann.gasellmvvm;
  */
 public class ErrorConstants {
 
+    public static String USERNAME_OR_PASSWORD_IS_EMPTY = "Username/Password is empty!";
     public static String USERNAME_IS_NOT_VALID = "Invalid username, try again!";
     public static String PASSWORD_IS_NOT_VALID = "Invalid password, try again!";
     public static String ERROR_CODE_404 = "The server seems to be down at the moment...";

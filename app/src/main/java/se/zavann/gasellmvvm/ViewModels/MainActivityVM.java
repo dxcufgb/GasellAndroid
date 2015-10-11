@@ -1,11 +1,17 @@
 package se.zavann.gasellmvvm.ViewModels;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
+import com.mashape.unirest.http.Unirest;
+
+import java.io.IOException;
 import java.lang.Object;
 import java.util.ArrayList;
 
+import se.zavann.gasellmvvm.LoginActivity;
 import se.zavann.gasellmvvm.Models.Customer;
 
 /**
@@ -13,36 +19,24 @@ import se.zavann.gasellmvvm.Models.Customer;
  */
 public class MainActivityVM {
 
-    private Customer customer;
-    private ArrayList<Customer> customerList;
-    //main vars
     private Context context;
-    private ArrayList<View> viewList;
-    private Object object;
+    private Customer object;
 
     //Constructor
-    public MainActivityVM(Context context, ArrayList<View> viewList, Object object) {
+    public MainActivityVM(Context context, Customer object) {
         this.context = context;
-        this.viewList = viewList;
         this.object = object;
     }
 
-    //Get all customers
-    public ArrayList<Customer> getAllCustomers() {
-        customerList = new ArrayList<>();
-
-
-        return customerList;
-    }
-
-    //set single customer
-    public void setNewCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    //Get single customer
-    public Customer getNewCustomer() {
-        return customer;
+    public void Logout(){
+        try {
+            Unirest.shutdown();
+            //return to login with no connection stream up
+            Intent intent = new Intent(this.context, LoginActivity.class);
+            this.context.startActivity(intent);
+        } catch (IOException e) {
+            Log.i("Logout", e.getMessage());
+        }
     }
 
 }

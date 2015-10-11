@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,45 +19,53 @@ import se.zavann.gasellmvvm.ViewModels.LoginVM;
 /**
  * Created by Bullen on 2015-09-13.
  */
-public class LoginActivity extends Activity implements View.OnClickListener /*LoginVMListener*/ {
+public class LoginActivity extends Activity implements LoginVMListener{
 
-    private View.OnClickListener onClickListener;
     private EditText etUsername, etPassword;
     private Button button;
+    private LoginVMListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_view);
 
-        //Login controller according to:
-        //https://github.com/KarinaSokolova/android-mvc-example
-        /*
-        LoginVM loginVm =
-                new LoginVM((LoginView) this.findViewById(R.id.login), this);
-        ((LoginView) this.findViewById(R.id.login)).setListeners(loginVm);
-        */
-
-        //etUsername = (EditText) findViewById(R.id.etUsername);
-        //etPassword = (EditText) findViewById(R.id.etPassword);
-
-        button = (Button) findViewById(R.id.btnLogin);
-        button.setOnClickListener(this);
+        listener = this;
+        init();
 
     }
 
 
-    //@Override
+    @Override
     public void onLoginSuccess(){
         Log.i("Activity","onLoginSuccess nås!");
         Intent intent = new Intent(this, MainActivity.class);
+        //key, value
+        intent.putExtra("customerId", this.etUsername.getText().toString());
         this.startActivity(intent);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btnLogin) {
-            Toast.makeText(getApplicationContext(), "CLICK!", Toast.LENGTH_LONG).show();
-        }
+    public void init() {
+        //init views
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        button = (Button) findViewById(R.id.btnLogin);
+
+        //button actions
+        button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getApplicationContext(), "CLICK!", Toast.LENGTH_LONG).show();
+
+                new LoginVM(getApplicationContext(),
+                        new Login(etUsername.getText().toString(),
+                                etPassword.getText().toString()),
+                        listener);
+            }
+        });
+
+
     }
+
+
 }

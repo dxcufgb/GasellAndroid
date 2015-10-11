@@ -5,18 +5,35 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
+import se.zavann.gasellmvvm.Models.Customer;
 
 public class MainActivity extends ActionBarActivity /*implements MainActivityListener*/{
+
+    private TextView twWelcome;
+    private AndroidRest rest;
+    private String customerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_view);
+        setContentView(R.layout.main_view);
 
-        //do binding
-        //SimpleAdapter.ViewBinder
+        this.twWelcome = (TextView)findViewById(R.id.twwelcome);
+
+        //get data from login
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            this.customerId = extras.getString("customerId");
+            rest.getCustomerInfo(this.customerId);
+
+            this.twWelcome.setText(rest.getCustomerInfo(this.customerId).getFirstName()
+                    + " "
+                    + rest.getCustomerInfo(this.customerId).getLastName());
+        }
+
 
 
     }
@@ -37,6 +54,8 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //do logout
+
             return true;
         }
 
