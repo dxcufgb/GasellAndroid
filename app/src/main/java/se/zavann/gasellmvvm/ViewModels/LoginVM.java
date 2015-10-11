@@ -6,6 +6,7 @@ import android.widget.Toast;
 import se.zavann.gasellmvvm.AndroidRest;
 import se.zavann.gasellmvvm.DTO.DTOLogin;
 import se.zavann.gasellmvvm.ErrorConstants;
+import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.LoginVMListener;
 import se.zavann.gasellmvvm.Models.Login;
 
@@ -15,12 +16,14 @@ import se.zavann.gasellmvvm.Models.Login;
 public class LoginVM {
 
     private LoginVMListener listener;
-    private AndroidRest rest;
+    private GasellRest rest;
     private Context context;
     private Login loginObj;
 
 
     public LoginVM(Context context, final Login loginObj, LoginVMListener listener){
+
+        rest = new GasellRest();
 
         this.context = context;
         this.loginObj = loginObj;
@@ -34,11 +37,14 @@ public class LoginVM {
             Toast.makeText(this.context, ErrorConstants.USERNAME_OR_PASSWORD_IS_EMPTY, Toast.LENGTH_LONG).show();
         } else {
             //check login
-            //if (rest.login(this.loginObj.getUsername(), this.loginObj.getPassword()) == 1) {
+            int resp = rest.login(loginObj.getUsername(), loginObj.getPassword());
+
+            if (resp == 1) {
                 this.listener.onLoginSuccess();
-            //} else {
-            //    Toast.makeText(this.context, ErrorConstants.ERROR_CODE_101, Toast.LENGTH_LONG).show();
-            //}
+            } else {
+                Toast.makeText(this.context, "Resp: " + resp, Toast.LENGTH_LONG).show();
+                //Toast.makeText(this.context, ErrorConstants.ERROR_CODE_101, Toast.LENGTH_LONG).show();
+            }
         }
 
     }

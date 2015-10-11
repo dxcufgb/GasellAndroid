@@ -26,6 +26,8 @@ public class MainActivityVM {
     public MainActivityVM(Context context, Customer object) {
         this.context = context;
         this.object = object;
+
+        
     }
 
     public void Logout(){

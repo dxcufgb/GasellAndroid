@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
 
     private TextView twWelcome;
     //interface supplied, see AndroidRest.
-    private GasellRest rest = new GasellRest();
+    private GasellRest rest;
     private String customerId;
 
     @Override
@@ -23,13 +23,14 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
 
+        rest = new GasellRest();
         this.twWelcome = (TextView)findViewById(R.id.twwelcome);
 
         //get data from login
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             this.customerId = extras.getString("customerId");
-            DtoCustomerInfo customerObject = rest.getCustomerInfo(this.customerId);
+            DtoCustomerInfo customerObject = this.rest.getCustomerInfo(this.customerId);
             String text = customerObject.getFirstName()
                     + " "
                     + customerObject.getLastName();
