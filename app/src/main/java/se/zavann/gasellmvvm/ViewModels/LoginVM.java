@@ -39,12 +39,21 @@ public class LoginVM {
             //check login
             int resp = rest.login(loginObj.getUsername(), loginObj.getPassword());
 
-            if (resp == 1) {
-                this.listener.onLoginSuccess();
-            } else {
-                Toast.makeText(this.context, "Resp: " + resp, Toast.LENGTH_LONG).show();
-                //Toast.makeText(this.context, ErrorConstants.ERROR_CODE_101, Toast.LENGTH_LONG).show();
+            switch (resp) {
+                case -1:
+                    Toast.makeText(this.context, ErrorConstants.ERROR_CODE_101, Toast.LENGTH_LONG).show();
+                    break;
+                case 0:
+                    Toast.makeText(this.context, ErrorConstants.ERROR_CODE_100, Toast.LENGTH_LONG).show();
+                    break;
+                case 1:
+                    this.listener.onLoginSuccess();
+                    break;
+                default:
+                    Toast.makeText(this.context, ErrorConstants.ERROR_CODE_404, Toast.LENGTH_LONG).show();
+                    break;
             }
+
         }
 
     }

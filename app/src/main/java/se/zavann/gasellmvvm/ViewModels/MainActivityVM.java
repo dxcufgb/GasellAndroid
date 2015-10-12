@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.Object;
 import java.util.ArrayList;
 
+import se.zavann.gasellmvvm.Listeners.MainActivityListener;
 import se.zavann.gasellmvvm.LoginActivity;
 import se.zavann.gasellmvvm.Models.Customer;
 
@@ -21,13 +22,16 @@ public class MainActivityVM {
 
     private Context context;
     private Customer object;
+    private MainActivityListener listener;
 
     //Constructor
-    public MainActivityVM(Context context, Customer object) {
+    public MainActivityVM(Context context, Customer object, MainActivityListener listener) {
         this.context = context;
         this.object = object;
+        this.listener = listener;
 
-        
+        //do rest call to get customer data
+
     }
 
     public void Logout(){

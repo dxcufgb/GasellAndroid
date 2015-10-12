@@ -12,16 +12,6 @@ public class DTOLogin {
         this.password = password;
     }
 
-    public int doLogin() {
-        //TODO: do REST login procedure and return integer as verification.
-
-        return 1;
-    }
-
-    public void doLogout() {
-        //TODO: add logout procedure.
-    }
-
     public String getUsername() {
         return username;
     }
