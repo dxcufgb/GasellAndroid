@@ -13,6 +13,6 @@ import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
  */
 public interface AndroidRest {
 
-    public int login(String login, String passwd);
+    public Integer login(String login, String passwd);
     public DtoCustomerInfo getCustomerInfo(String customerId);
 }
