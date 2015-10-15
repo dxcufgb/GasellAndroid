@@ -12,27 +12,30 @@ import java.lang.Object;
 import java.util.ArrayList;
 
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
+import se.zavann.gasellmvvm.Listeners.ModelListener;
 import se.zavann.gasellmvvm.LoginActivity;
 import se.zavann.gasellmvvm.Models.Customer;
 
 /**
  * Created by Bullen on 2015-10-08.
  */
-public class MainActivityVM {
+public class MainActivityVM extends Customer implements ModelListener{
 
     private Context context;
     private Customer object;
     private MainActivityListener listener;
 
     //Constructor
-    public MainActivityVM(Context context, Customer object, MainActivityListener listener) {
+    public MainActivityVM(Context context, Customer object/*, MainActivityListener listener*/) {
         this.context = context;
         this.object = object;
-        this.listener = listener;
+        //this.listener = listener;
 
         //do rest call to get customer data
+        
 
     }
+
 
     public void Logout(){
         try {
@@ -45,4 +48,20 @@ public class MainActivityVM {
         }
     }
 
+
+    @Override
+    public void onUpdateCustomerInfo() {
+        this.object.getCustomerId();
+        this.object.getFirstName();
+        this.object.getLastName();
+        this.object.getEmail();
+        this.object.getCompanyName();
+        this.object.getSocialId();
+        this.object.getZipCode();
+        this.object.getAddress();
+        this.object.getCity();
+        this.object.getDayPhone();
+        this.object.getHomePhone();
+        this.object.getCellPhone();
+    }
 }

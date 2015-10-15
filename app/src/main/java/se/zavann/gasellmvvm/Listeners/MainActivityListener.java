@@ -6,6 +6,6 @@ package se.zavann.gasellmvvm.Listeners;
 public interface MainActivityListener {
 
     public void onLogout();
-    public void onGetCustomerInfo();
+
 
 }

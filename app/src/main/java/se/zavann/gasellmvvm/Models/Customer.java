@@ -93,9 +93,7 @@ public class Customer {
         this.socialId = socialId;
     }
 
-    public String getAddress() {
-        return address;
-    }
+    public String getAddress() { return address; }
 
     public String getZipCode() {
         return zipCode;

@@ -41,13 +41,16 @@ public class LoginVM {
 
             switch (resp) {
                 case -1:
-                    Toast.makeText(this.context, ErrorConstants.ERROR_CODE_101, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.context, ErrorConstants.PASSWORD_IS_NOT_VALID, Toast.LENGTH_LONG).show();
                     break;
                 case 0:
                     Toast.makeText(this.context, ErrorConstants.ERROR_CODE_100, Toast.LENGTH_LONG).show();
                     break;
                 case 1:
                     this.listener.onLoginSuccess();
+                    break;
+                case 2:
+                    Toast.makeText(this.context, ErrorConstants.USERNAME_IS_NOT_VALID, Toast.LENGTH_LONG).show();
                     break;
                 default:
                     Toast.makeText(this.context, ErrorConstants.ERROR_CODE_404, Toast.LENGTH_LONG).show();
