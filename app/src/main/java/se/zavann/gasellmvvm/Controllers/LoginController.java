@@ -1,10 +1,8 @@
-package se.zavann.gasellmvvm.ViewModels;
+package se.zavann.gasellmvvm.Controllers;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import se.zavann.gasellmvvm.AndroidRest;
-import se.zavann.gasellmvvm.DTO.DTOLogin;
 import se.zavann.gasellmvvm.ErrorConstants;
 import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.LoginVMListener;
@@ -13,7 +11,7 @@ import se.zavann.gasellmvvm.Models.Login;
 /**
  * Created by Bullen on 2015-10-06.
  */
-public class LoginVM {
+public class LoginController {
 
     private LoginVMListener listener;
     private GasellRest rest;
@@ -21,7 +19,7 @@ public class LoginVM {
     private Login loginObj;
 
 
-    public LoginVM(Context context, final Login loginObj, LoginVMListener listener){
+    public LoginController(Context context, final Login loginObj, LoginVMListener listener){
 
         rest = new GasellRest();
 
