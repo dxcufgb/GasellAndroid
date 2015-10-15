@@ -31,9 +31,17 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         if (extras != null) {
             this.customerId = extras.getString("customerId");
             DtoCustomerInfo customerObject = this.rest.getCustomerInfo(this.customerId);
-            String text = customerObject.getFirstName()
-                    + " "
-                    + customerObject.getLastName();
+            String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
+            text += customerObject.getSocialId()+"\n";
+            if(!customerObject.getCompanyName().equals("")){
+            text += customerObject.getCompanyName()+"\n";
+            }
+            text += customerObject.getAddress()+"\n";
+            text += customerObject.getZipCode()+" "+customerObject.getCity()+"\n";
+            text += customerObject.getEmail()+"\n";
+            text += customerObject.getHomePhone()+"\n";
+            text += customerObject.getDayPhone()+"\n";
+            text += customerObject.getCellPhone()+"\n";
             this.twWelcome.setText(text);
         }
 
