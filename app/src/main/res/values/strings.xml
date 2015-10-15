@@ -2,5 +2,9 @@
     <string name="app_name">GasellMVVM</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
+    <string name="txtLoginUsername">Username:</string>
+    <string name="txtLoginPassword">Password:</string>
+    <string name="btnLogout">Logout</string>
+    <string name="btnLogin">Log in</string>
 </resources>

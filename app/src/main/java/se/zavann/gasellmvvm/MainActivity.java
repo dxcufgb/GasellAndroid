@@ -1,17 +1,52 @@
 package se.zavann.gasellmvvm;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
+import se.zavann.gasellmvvm.Listeners.MainActivityListener;
+import se.zavann.gasellmvvm.Models.Customer;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity /*implements MainActivityListener*/{
+
+    private TextView twWelcome;
+    //interface supplied, see AndroidRest.
+    private GasellRest rest;
+    private String customerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_view);
+
+        rest = new GasellRest();
+        this.twWelcome = (TextView)findViewById(R.id.twwelcome);
+
+        //get data from login
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            this.customerId = extras.getString("customerId");
+            DtoCustomerInfo customerObject = this.rest.getCustomerInfo(this.customerId);
+            String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
+            text += customerObject.getSocialId()+"\n";
+            if(!customerObject.getCompanyName().equals("")){
+            text += customerObject.getCompanyName()+"\n";
+            }
+            text += customerObject.getAddress()+"\n";
+            text += customerObject.getZipCode()+" "+customerObject.getCity()+"\n";
+            text += customerObject.getEmail()+"\n";
+            text += customerObject.getHomePhone()+"\n";
+            text += customerObject.getDayPhone()+"\n";
+            text += customerObject.getCellPhone()+"\n";
+            this.twWelcome.setText(text);
+        }
+
+
+
     }
 
     @Override
@@ -30,6 +65,8 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //do logout
+
             return true;
         }
 
