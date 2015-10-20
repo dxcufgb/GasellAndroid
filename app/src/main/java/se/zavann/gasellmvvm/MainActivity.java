@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
+import se.zavann.gasellmvvm.Listeners.RestListener;
 import se.zavann.gasellmvvm.Models.Customer;
 
 public class MainActivity extends ActionBarActivity /*implements MainActivityListener*/{
@@ -16,6 +17,7 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
     private TextView twWelcome;
     //interface supplied, see AndroidRest.
     private GasellRest rest;
+    private RestListener listen;
     private String customerId;
 
     @Override
@@ -24,25 +26,15 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         setContentView(R.layout.main_view);
 
         rest = new GasellRest();
+        listen = new RestListener(this);
+        rest.addObserver(listen);
         this.twWelcome = (TextView)findViewById(R.id.twwelcome);
 
         //get data from login
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             this.customerId = extras.getString("customerId");
-            DtoCustomerInfo customerObject = this.rest.getCustomerInfo(this.customerId);
-            String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
-            text += customerObject.getSocialId()+"\n";
-            if(!customerObject.getCompanyName().equals("")){
-            text += customerObject.getCompanyName()+"\n";
-            }
-            text += customerObject.getAddress()+"\n";
-            text += customerObject.getZipCode()+" "+customerObject.getCity()+"\n";
-            text += customerObject.getEmail()+"\n";
-            text += customerObject.getHomePhone()+"\n";
-            text += customerObject.getDayPhone()+"\n";
-            text += customerObject.getCellPhone()+"\n";
-            this.twWelcome.setText(text);
+            this.rest.getCustomerInfo(this.customerId);
         }
 
 
@@ -71,5 +63,22 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void restCallback(Object inputObject){
+        Object[] convertedObject = (Object[]) inputObject;
+        DtoCustomerInfo customerObject = (DtoCustomerInfo)convertedObject[1];
+        String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
+        text += customerObject.getSocialId()+"\n";
+        if(!customerObject.getCompanyName().equals("")){
+            text += customerObject.getCompanyName()+"\n";
+        }
+        text += customerObject.getAddress()+"\n";
+        text += customerObject.getZipCode()+" "+customerObject.getCity()+"\n";
+        text += customerObject.getEmail()+"\n";
+        text += customerObject.getHomePhone()+"\n";
+        text += customerObject.getDayPhone()+"\n";
+        text += customerObject.getCellPhone()+"\n";
+        this.twWelcome.setText(text);
     }
 }
