@@ -24,6 +24,7 @@ import se.zavann.gasellmvvm.Models.Customer;
  */
 public class MainActivityVM implements RestCallListener{
 
+
     private Context context;
     private Customer object;
     private MainActivityListener listener;
@@ -32,10 +33,10 @@ public class MainActivityVM implements RestCallListener{
     private RestListener listen;
 
     //Constructor
-    public MainActivityVM(Context context, Customer object, MainActivityListener listener) {
+    public MainActivityVM(Context context, Customer object/*, MainActivityListener listener*/) {
         this.context = context;
         this.object = object;
-        this.listener = listener;
+        //this.listener = listener;
 
         //do rest call to get customer data
         rest = new GasellRest();
@@ -44,6 +45,7 @@ public class MainActivityVM implements RestCallListener{
         rest.getCustomerInfo(object.getCustomerId());
 
     }
+
 
     public void Logout(){
         try {
@@ -61,6 +63,5 @@ public class MainActivityVM implements RestCallListener{
         Object[] convertedObject = (Object[]) listen.getObject();
         DTOCustomerInfo customerObject = (DTOCustomerInfo)convertedObject[1];
         listener.onGetCustomerInfo(customerObject);
-
     }
 }

@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import se.zavann.gasellmvvm.DTO.DTOCustomerInfo;
@@ -18,6 +20,7 @@ import se.zavann.gasellmvvm.ViewModels.MainActivityVM;
 public class MainActivity extends ActionBarActivity implements MainActivityListener{
 
     private TextView twWelcome;
+    private MenuItem item_logout;
     private String customerId;
     private MainActivityListener listener;
 
@@ -60,12 +63,13 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             //do logout
-
+            new MainActivityVM(getApplicationContext(),null).Logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onLogout() {
@@ -90,4 +94,5 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         Log.i("mainActivity", text);
         this.twWelcome.setText(text);
     }
+
 }

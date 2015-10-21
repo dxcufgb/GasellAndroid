@@ -42,6 +42,7 @@ public class LoginVM implements RestCallListener{
         } else {
             //check login
             rest.login(loginObj.getUsername(), loginObj.getPassword());
+
         }
 
     }
