@@ -3,15 +3,13 @@ package se.zavann.gasellmvvm.ViewModels;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 
 import com.mashape.unirest.http.Unirest;
 
 import java.io.IOException;
 import java.lang.Object;
-import java.util.ArrayList;
 
-import se.zavann.gasellmvvm.DTO.DTOCustomerInfo;
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
 import se.zavann.gasellmvvm.Listeners.RestCallListener;
@@ -36,7 +34,7 @@ public class MainActivityVM implements RestCallListener{
     public MainActivityVM(Context context, Customer object, MainActivityListener listener) {
         this.context = context;
         this.object = object;
-        //this.listener = listener;
+        this.listener = listener;
 
         //do rest call to get customer data
         rest = new GasellRest();
@@ -61,7 +59,7 @@ public class MainActivityVM implements RestCallListener{
     @Override
     public void restCallback() {
         Object[] convertedObject = (Object[]) listen.getObject();
-        DTOCustomerInfo customerObject = (DTOCustomerInfo)convertedObject[1];
+        DtoCustomerInfo customerObject = (DtoCustomerInfo)convertedObject[1];
         listener.onGetCustomerInfo(customerObject);
     }
 }

@@ -3,18 +3,13 @@ package se.zavann.gasellmvvm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import se.zavann.gasellmvvm.DTO.DTOLogin;
 import se.zavann.gasellmvvm.Listeners.LoginVMListener;
 import se.zavann.gasellmvvm.Models.Login;
-import se.zavann.gasellmvvm.View.LoginView;
 import se.zavann.gasellmvvm.ViewModels.LoginVM;
 
 /**

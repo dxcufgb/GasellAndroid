@@ -9,7 +9,7 @@ package se.zavann.gasellmvvm.DTO;
  *
  * @author Tom
  */
-public class DTOCustomerInfo {
+public class DtoCustomerInfo {
     private final String customerId;
     private String firstName;
     private String lastName;
@@ -23,7 +23,7 @@ public class DTOCustomerInfo {
     private String homePhone;
     private String cellPhone;
 
-    public DTOCustomerInfo(String customerId) {
+    public DtoCustomerInfo(String customerId) {
         this.customerId = customerId;
     }
 

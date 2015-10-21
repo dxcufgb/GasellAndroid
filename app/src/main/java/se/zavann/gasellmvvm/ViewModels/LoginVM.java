@@ -3,8 +3,6 @@ package se.zavann.gasellmvvm.ViewModels;
 import android.content.Context;
 import android.widget.Toast;
 
-import se.zavann.gasellmvvm.AndroidRest;
-import se.zavann.gasellmvvm.DTO.DTOLogin;
 import se.zavann.gasellmvvm.ErrorConstants;
 import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.LoginVMListener;

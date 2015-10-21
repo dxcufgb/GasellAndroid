@@ -6,15 +6,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import se.zavann.gasellmvvm.DTO.DTOCustomerInfo;
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
-import se.zavann.gasellmvvm.Listeners.RestListener;
 import se.zavann.gasellmvvm.Models.Customer;
-import se.zavann.gasellmvvm.Models.Login;
 import se.zavann.gasellmvvm.ViewModels.MainActivityVM;
 
 public class MainActivity extends ActionBarActivity implements MainActivityListener{
@@ -77,9 +73,9 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
     }
 
     @Override
-    public void onGetCustomerInfo(DTOCustomerInfo dtoCustomerInfo) {
+    public void onGetCustomerInfo(DtoCustomerInfo dtoCustomerInfo) {
         Log.i("mainActivity", "Callback");
-        DTOCustomerInfo customerObject = dtoCustomerInfo;
+        DtoCustomerInfo customerObject = dtoCustomerInfo;
         String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
         text += customerObject.getSocialId()+"\n";
         if(!customerObject.getCompanyName().equals("")){

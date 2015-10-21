@@ -1,6 +1,6 @@
 package se.zavann.gasellmvvm.Listeners;
 
-import se.zavann.gasellmvvm.DTO.DTOCustomerInfo;
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 
 /**
  * Created by Bullen on 2015-10-08.
@@ -8,6 +8,6 @@ import se.zavann.gasellmvvm.DTO.DTOCustomerInfo;
 public interface MainActivityListener {
 
     public void onLogout();
-    public void onGetCustomerInfo(DTOCustomerInfo dtoCustomerInfo);
+    public void onGetCustomerInfo(DtoCustomerInfo dtoCustomerInfo);
 
 }
