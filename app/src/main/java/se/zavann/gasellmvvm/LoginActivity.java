@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import se.zavann.gasellmvvm.DTO.DTOLogin;
 import se.zavann.gasellmvvm.Listeners.LoginVMListener;
 import se.zavann.gasellmvvm.Models.Login;
 import se.zavann.gasellmvvm.View.LoginView;
@@ -38,7 +39,6 @@ public class LoginActivity extends Activity implements LoginVMListener{
 
     @Override
     public void onLoginSuccess(){
-        Log.i("Activity","onLoginSuccess nås!");
         Intent intent = new Intent(this, MainActivity.class);
         //key, value
         intent.putExtra("customerId", this.etUsername.getText().toString());

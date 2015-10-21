@@ -8,13 +8,14 @@ import se.zavann.gasellmvvm.DTO.DTOLogin;
 import se.zavann.gasellmvvm.ErrorConstants;
 import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.LoginVMListener;
+import se.zavann.gasellmvvm.Listeners.RestCallListener;
 import se.zavann.gasellmvvm.Listeners.RestListener;
 import se.zavann.gasellmvvm.Models.Login;
 
 /**
  * Created by Bullen on 2015-10-06.
  */
-public class LoginVM {
+public class LoginVM implements RestCallListener{
 
     private LoginVMListener listener;
     private GasellRest rest;
@@ -28,7 +29,7 @@ public class LoginVM {
         rest = new GasellRest();
         listen = new RestListener(this);
         rest.addObserver(listen);
-        this.context = context;
+        this.context = context; //används ej?
         this.loginObj = loginObj;
         this.listener = listener;
 
@@ -45,8 +46,8 @@ public class LoginVM {
 
     }
 
-    public void restCallback(Object inputObject){
-        Object[] convertedObject = (Object[])inputObject;
+    public void restCallback(){
+        Object[] convertedObject = (Object[])listen.getObject();
         int resp = (int)convertedObject[1];
         switch (resp) {
             case -1:

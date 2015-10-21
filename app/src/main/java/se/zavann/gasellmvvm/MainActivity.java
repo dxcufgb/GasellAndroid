@@ -1,44 +1,46 @@
 package se.zavann.gasellmvvm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
+import se.zavann.gasellmvvm.DTO.DTOCustomerInfo;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
 import se.zavann.gasellmvvm.Listeners.RestListener;
 import se.zavann.gasellmvvm.Models.Customer;
+import se.zavann.gasellmvvm.Models.Login;
+import se.zavann.gasellmvvm.ViewModels.MainActivityVM;
 
-public class MainActivity extends ActionBarActivity /*implements MainActivityListener*/{
+public class MainActivity extends ActionBarActivity implements MainActivityListener{
 
     private TextView twWelcome;
-    //interface supplied, see AndroidRest.
-    private GasellRest rest;
-    private RestListener listen;
     private String customerId;
+    private MainActivityListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
 
-        rest = new GasellRest();
-        listen = new RestListener(this);
-        rest.addObserver(listen);
-        this.twWelcome = (TextView)findViewById(R.id.twwelcome);
+        listener = this;
+        init();
+    }
 
+    public void init(){
         //get data from login
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             this.customerId = extras.getString("customerId");
-            this.rest.getCustomerInfo(this.customerId);
         }
-
-
-
+        //init views
+        this.twWelcome = (TextView)findViewById(R.id.twwelcome);
+        new MainActivityVM(getApplicationContext(),
+                new Customer(this.customerId),
+                listener);
     }
 
     @Override
@@ -65,9 +67,15 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         return super.onOptionsItemSelected(item);
     }
 
-    public void restCallback(Object inputObject){
-        Object[] convertedObject = (Object[]) inputObject;
-        DtoCustomerInfo customerObject = (DtoCustomerInfo)convertedObject[1];
+    @Override
+    public void onLogout() {
+
+    }
+
+    @Override
+    public void onGetCustomerInfo(DTOCustomerInfo dtoCustomerInfo) {
+        Log.i("mainActivity", "Callback");
+        DTOCustomerInfo customerObject = dtoCustomerInfo;
         String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
         text += customerObject.getSocialId()+"\n";
         if(!customerObject.getCompanyName().equals("")){
@@ -79,6 +87,7 @@ public class MainActivity extends ActionBarActivity /*implements MainActivityLis
         text += customerObject.getHomePhone()+"\n";
         text += customerObject.getDayPhone()+"\n";
         text += customerObject.getCellPhone()+"\n";
+        Log.i("mainActivity", text);
         this.twWelcome.setText(text);
     }
 }
