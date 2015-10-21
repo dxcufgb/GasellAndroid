@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             //do logout
-            new MainActivityVM(getApplicationContext(),null).Logout();
+            new MainActivityVM(getApplicationContext(),null, listener).Logout();
             return true;
         }
 

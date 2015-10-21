@@ -33,7 +33,7 @@ public class MainActivityVM implements RestCallListener{
     private RestListener listen;
 
     //Constructor
-    public MainActivityVM(Context context, Customer object/*, MainActivityListener listener*/) {
+    public MainActivityVM(Context context, Customer object, MainActivityListener listener) {
         this.context = context;
         this.object = object;
         //this.listener = listener;
