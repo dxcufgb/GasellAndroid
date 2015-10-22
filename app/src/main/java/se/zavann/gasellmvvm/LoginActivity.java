@@ -3,11 +3,11 @@ package se.zavann.gasellmvvm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import se.zavann.gasellmvvm.Listeners.LoginControllerListener;
 import se.zavann.gasellmvvm.Models.Login;
@@ -35,12 +35,31 @@ public class LoginActivity extends Activity implements LoginControllerListener {
 
     @Override
     public void onLoginSuccess(){
-        Log.i("Activity","onLoginSuccess nås!");
         Intent intent = new Intent(this, MainActivity.class);
-        //key, value
         intent.putExtra("customerId", this.etUsername.getText().toString());
         this.startActivity(intent);
     }
+
+    @Override
+    public void onLoginFailed() {
+        Toast.makeText(LoginActivity.this, ErrorConstants.ERROR_CODE_101, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLoginEmptyCall() {
+        Toast.makeText(LoginActivity.this, ErrorConstants.USERNAME_OR_PASSWORD_IS_EMPTY, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onApplicationError() {
+        Toast.makeText(LoginActivity.this, ErrorConstants.ERROR_CODE_100, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onServerNotResponding() {
+        Toast.makeText(LoginActivity.this, ErrorConstants.ERROR_CODE_404, Toast.LENGTH_SHORT).show();
+    }
+
 
     public void init() {
         //init views
@@ -52,12 +71,8 @@ public class LoginActivity extends Activity implements LoginControllerListener {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "CLICK!", Toast.LENGTH_LONG).show();
-
-                new LoginController(getApplicationContext(),
-                        new Login(etUsername.getText().toString(),
-                                etPassword.getText().toString()),
-                        listener);
+                new LoginController().loginAction(new Login(etUsername.getText().toString(),
+                        etPassword.getText().toString()), listener);
             }
         });
 

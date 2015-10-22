@@ -1,45 +1,45 @@
 package se.zavann.gasellmvvm.Controllers;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 
-import com.mashape.unirest.http.Unirest;
-
-import java.io.IOException;
-
+import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
+import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
-import se.zavann.gasellmvvm.LoginActivity;
+import se.zavann.gasellmvvm.Listeners.RestCallListener;
+import se.zavann.gasellmvvm.Listeners.RestListener;
 import se.zavann.gasellmvvm.Models.Customer;
 
 /**
  * Created by Bullen on 2015-10-08.
  */
-public class MainController {
+public class MainController implements RestCallListener {
 
     private Context context;
     private Customer object;
     private MainActivityListener listener;
+    private GasellRest rest;
+    private RestListener listen;
 
     //Constructor
-    public MainController(Context context, Customer object, MainActivityListener listener) {
-        this.context = context;
-        this.object = object;
+    public MainController() {}
+
+
+    public void getCustomerInfo(MainActivityListener listener, String customerId) {
         this.listener = listener;
 
-        //do rest call to get customer data
-
+        rest = new GasellRest();
+        listen = new RestListener(this);
+        rest.addObserver(listen);
+        rest.getCustomerInfo(customerId);
     }
 
-    public void Logout(){
-        try {
-            Unirest.shutdown();
-            //return to login with no connection stream up
-            Intent intent = new Intent(this.context, LoginActivity.class);
-            this.context.startActivity(intent);
-        } catch (IOException e) {
-            Log.i("Logout", e.getMessage());
-        }
+
+    @Override
+    public void restCallback() {
+        Object[] convertedObject = (Object[]) listen.getObject();
+        DtoCustomerInfo customerObject = (DtoCustomerInfo)convertedObject[1];
+        listener.onGetCustomerInfo(customerObject);
     }
+
 
 }

@@ -10,5 +10,9 @@ public interface LoginControllerListener {
      * Login Activity about the successful login
      */
     public void onLoginSuccess();
+    public void onLoginFailed();
+    public void onLoginEmptyCall();
+    public void onApplicationError();
+    public void onServerNotResponding();
 
 }

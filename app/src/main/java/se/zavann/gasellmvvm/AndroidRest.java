@@ -5,14 +5,12 @@
  */
 package se.zavann.gasellmvvm;
 
-import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
-
 /**
  *
  * @author Tom
  */
 public interface AndroidRest {
 
-    public Integer login(String login, String passwd);
-    public DtoCustomerInfo getCustomerInfo(String customerId);
+    public void login(String login, String passwd);
+    public void getCustomerInfo(String customerId);
 }
