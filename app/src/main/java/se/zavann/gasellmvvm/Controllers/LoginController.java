@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import se.zavann.gasellmvvm.ErrorConstants;
 import se.zavann.gasellmvvm.GasellRest;
-import se.zavann.gasellmvvm.Listeners.LoginVMListener;
+import se.zavann.gasellmvvm.Listeners.LoginControllerListener;
 import se.zavann.gasellmvvm.Models.Login;
 
 /**
@@ -13,19 +13,21 @@ import se.zavann.gasellmvvm.Models.Login;
  */
 public class LoginController {
 
-    private LoginVMListener listener;
+    private LoginControllerListener listener;
     private GasellRest rest;
     private Context context;
     private Login loginObj;
 
 
-    public LoginController(Context context, final Login loginObj, LoginVMListener listener){
+    public LoginController(){
 
         rest = new GasellRest();
 
         this.context = context;
         this.loginObj = loginObj;
         this.listener = listener;
+
+
 
         if (this.loginObj.getUsername().equals("") || this.loginObj.getUsername().equals(null)) {
             //send error message
@@ -54,6 +56,18 @@ public class LoginController {
 
         }
 
+    }
+
+
+    public void loginAction(Login login, LoginControllerListener listener) {
+        //do rest login
+        if (login.getUsername().equals("") || login.getUsername().equals(null)) {
+            // do nothing
+        } else if (login.getPassword().equals("") || login.getPassword().equals(null)) {
+            // do nothing
+        } else {
+
+        }
     }
 
 

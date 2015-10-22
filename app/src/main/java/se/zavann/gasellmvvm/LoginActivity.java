@@ -9,18 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import se.zavann.gasellmvvm.Listeners.LoginVMListener;
+import se.zavann.gasellmvvm.Listeners.LoginControllerListener;
 import se.zavann.gasellmvvm.Models.Login;
 import se.zavann.gasellmvvm.Controllers.LoginController;
 
 /**
  * Created by Bullen on 2015-09-13.
  */
-public class LoginActivity extends Activity implements LoginVMListener{
+public class LoginActivity extends Activity implements LoginControllerListener {
 
     private EditText etUsername, etPassword;
     private Button button;
-    private LoginVMListener listener;
+    private LoginControllerListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
