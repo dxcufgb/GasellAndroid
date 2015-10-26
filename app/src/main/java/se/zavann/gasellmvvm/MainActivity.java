@@ -2,6 +2,7 @@ package se.zavann.gasellmvvm;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import se.zavann.gasellmvvm.Controllers.MainController;
 import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
+import se.zavann.gasellmvvm.Views.MainView;
 
 public class MainActivity extends ActionBarActivity implements MainActivityListener {
 
@@ -16,6 +18,7 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
     private GasellRest rest;
     private String customerId;
     private MainActivityListener listener;
+    private MainView mainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,14 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         setContentView(R.layout.main_view);
 
         listener = this;
-        init();
+        //init();
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            this.customerId = extras.getString("customerId");
+        }
+
+        this.mainView = (MainView) findViewById(R.id.mainview);
+        new MainController(this.listener).setCustomerId(this.customerId);
 
     }
 
@@ -52,6 +62,7 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
     }
 
 
+    /*
     public void init() {
         //get data from login
         Bundle extras = getIntent().getExtras();
@@ -62,10 +73,14 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         this.twWelcome = (TextView) findViewById(R.id.twwelcome);
         new MainController().getCustomerInfo(this.listener, this.customerId);
     }
+    */
 
 
     @Override
     public void onGetCustomerInfo(DtoCustomerInfo dtoCustomerInfo) {
+
+        Log.i("Activity", "onGetCustomerInfo körs!");
+
         DtoCustomerInfo customerObject = dtoCustomerInfo;
         String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
         text += customerObject.getSocialId()+"\n";
@@ -78,6 +93,14 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         text += customerObject.getHomePhone()+"\n";
         text += customerObject.getDayPhone()+"\n";
         text += customerObject.getCellPhone()+"\n";
-        this.twWelcome.setText(text);
+
+        //this.twWelcome.setText(text);
+
+        Log.i("Activity", "Dags att sätta text!");
+        this.mainView.setCustomer(text);
+
+
     }
+
+
 }

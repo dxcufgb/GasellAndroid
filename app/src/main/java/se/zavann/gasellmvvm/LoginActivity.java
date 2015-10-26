@@ -12,6 +12,7 @@ import android.widget.Toast;
 import se.zavann.gasellmvvm.Listeners.LoginControllerListener;
 import se.zavann.gasellmvvm.Models.Login;
 import se.zavann.gasellmvvm.Controllers.LoginController;
+import se.zavann.gasellmvvm.Views.LoginView;
 
 /**
  * Created by Bullen on 2015-09-13.
@@ -19,7 +20,8 @@ import se.zavann.gasellmvvm.Controllers.LoginController;
 public class LoginActivity extends Activity implements LoginControllerListener {
 
     private EditText etUsername, etPassword;
-    private Button button;
+    //private Button button;
+    private LoginView loginView;
     private LoginControllerListener listener;
 
     @Override
@@ -28,7 +30,11 @@ public class LoginActivity extends Activity implements LoginControllerListener {
         setContentView(R.layout.login_view);
 
         listener = this;
-        init();
+        //init();
+        LoginController loginController = new LoginController((LoginView) this.findViewById(R.id.login),this);
+        this.loginView = (LoginView) this.findViewById(R.id.login);
+        this.loginView.setListeners(loginController);
+
 
     }
 
@@ -36,7 +42,7 @@ public class LoginActivity extends Activity implements LoginControllerListener {
     @Override
     public void onLoginSuccess(){
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("customerId", this.etUsername.getText().toString());
+        intent.putExtra("customerId", this.loginView.getCustomerId());
         this.startActivity(intent);
     }
 
@@ -61,7 +67,7 @@ public class LoginActivity extends Activity implements LoginControllerListener {
     }
 
 
-    public void init() {
+    /*public void init() {
         //init views
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -77,7 +83,7 @@ public class LoginActivity extends Activity implements LoginControllerListener {
         });
 
 
-    }
+    }*/
 
 
 }
