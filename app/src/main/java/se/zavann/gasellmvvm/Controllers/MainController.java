@@ -27,7 +27,6 @@ public class MainController implements RestCallListener {
     public MainController( MainActivityListener listener) {
 
         this.listener = listener;
-        getCustomerInfo();
 
     }
 
@@ -35,7 +34,7 @@ public class MainController implements RestCallListener {
         this.customerId = id;
     }
 
-    private void getCustomerInfo() {
+    public void getCustomerInfo() {
         rest = new GasellRest();
         listen = new RestListener(this);
         rest.addObserver(listen);
@@ -45,7 +44,7 @@ public class MainController implements RestCallListener {
 
     @Override
     public void restCallback() {
-        Log.i("Controller", "restCallBack kallas!");
+        //Log.i("Controller", "restCallBack kallas!");
         Object[] convertedObject = (Object[]) listen.getObject();
         DtoCustomerInfo customerObject = (DtoCustomerInfo)convertedObject[1];
         listener.onGetCustomerInfo(customerObject);

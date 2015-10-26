@@ -33,7 +33,9 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
         }
 
         this.mainView = (MainView) findViewById(R.id.mainview);
-        new MainController(this.listener).setCustomerId(this.customerId);
+        MainController controller = new MainController(this.listener);
+        controller.setCustomerId(this.customerId);
+        controller.getCustomerInfo();
 
     }
 
@@ -96,7 +98,7 @@ public class MainActivity extends ActionBarActivity implements MainActivityListe
 
         //this.twWelcome.setText(text);
 
-        Log.i("Activity", "Dags att sätta text!");
+        //Log.i("Activity", "Dags att sätta text!");
         this.mainView.setCustomer(text);
 
 

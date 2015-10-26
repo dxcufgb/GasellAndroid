@@ -20,7 +20,7 @@ public class MainView extends LinearLayout{
     }
 
     public void setCustomer(String customerText) {
-        Log.i("View", "Sätter text!");
+        //Log.i("View", "Sätter text!");
         ((EditText) findViewById(R.id.twwelcome)).setText(customerText);
     }
 
