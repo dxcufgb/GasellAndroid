@@ -40,7 +40,7 @@ public class MainActivityVM implements RestCallListener{
         rest = new GasellRest();
         listen = new RestListener(this);
         rest.addObserver(listen);
-        rest.getCustomerInfo(object.getCustomerId());
+        rest.getCustomerInfo(this.object.getCustomerId());
 
     }
 
