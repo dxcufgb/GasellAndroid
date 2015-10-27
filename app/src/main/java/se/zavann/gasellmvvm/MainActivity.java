@@ -1,22 +1,19 @@
 package se.zavann.gasellmvvm;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import se.zavann.gasellmvvm.DTO.DtoCustomerInfo;
 import se.zavann.gasellmvvm.Listeners.MainActivityListener;
 import se.zavann.gasellmvvm.Models.Customer;
 import se.zavann.gasellmvvm.ViewModels.MainActivityVM;
+import se.zavann.gasellmvvm.Views.MainView;
 
 public class MainActivity extends AppCompatActivity implements MainActivityListener{
 
-    private TextView twWelcome;
+    private MainView mainView;
     private MenuItem item_logout;
     private String customerId;
     private MainActivityListener listener;
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
             this.customerId = extras.getString("customerId");
         }
         //init views
-        this.twWelcome = (TextView)findViewById(R.id.twwelcome);
+        this.mainView = ((MainView) findViewById(R.id.mainView));
         new MainActivityVM(getApplicationContext(),
                 new Customer(this.customerId),
                 listener);
@@ -75,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
 
     @Override
     public void onGetCustomerInfo(DtoCustomerInfo dtoCustomerInfo) {
-        Log.i("mainActivity", "Callback");
         DtoCustomerInfo customerObject = dtoCustomerInfo;
         String text = customerObject.getFirstName()+" "+ customerObject.getLastName()+"\n";
         text += customerObject.getSocialId()+"\n";
@@ -88,8 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
         text += customerObject.getHomePhone()+"\n";
         text += customerObject.getDayPhone()+"\n";
         text += customerObject.getCellPhone()+"\n";
-        Log.i("mainActivity", text);
-        this.twWelcome.setText(text);
+        this.mainView.setCustomer(text);
     }
 
 }

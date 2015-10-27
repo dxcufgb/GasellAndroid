@@ -27,9 +27,10 @@ public class LoginVM implements RestCallListener{
         rest = new GasellRest();
         listen = new RestListener(this);
         rest.addObserver(listen);
-        this.context = context; //används ej?
+        this.context = context;
         this.loginObj = loginObj;
         this.listener = listener;
+
 
         if (this.loginObj.getUsername().equals("") || this.loginObj.getUsername().equals(null)) {
             //send error message
@@ -63,5 +64,6 @@ public class LoginVM implements RestCallListener{
                 break;
         }
     }
+
 
 }
