@@ -1,13 +1,11 @@
 package se.zavann.gasellmvvm.Controllers;
 
 import android.view.View;
-import android.widget.Toast;
 
 import se.zavann.gasellmvvm.GasellRest;
 import se.zavann.gasellmvvm.Listeners.LoginControllerListener;
 import se.zavann.gasellmvvm.Listeners.RestCallListener;
 import se.zavann.gasellmvvm.Listeners.RestListener;
-import se.zavann.gasellmvvm.Models.Login;
 import se.zavann.gasellmvvm.Views.LoginView;
 
 /**
@@ -30,11 +28,6 @@ public class LoginController implements RestCallListener, View.OnClickListener{
 
     }
 
-    /*
-    public void loginAction(Login login, LoginControllerListener listener) {
-
-    }
-    */
 
 
     public void restCallback(){
